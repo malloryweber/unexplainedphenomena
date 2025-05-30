@@ -284,7 +284,7 @@
 <body>
     <div class="stars"></div>
     
-    <button class="home-button" onclick="goHome()">Home</button>
+    <button class="home-button" a href="https://malloryweber.github.io/unexplainedphenomena/index.html">Home</button>
     
     <div class="poster">
         <div class="header">
@@ -323,21 +323,11 @@
                 
                 <div class="info-card">
                     <h3>Are UFOs dangerous?</h3>
-                    <p>In theory, UFOs could be dangerous if aliens exist, but no one has ever been hurt by aliens.</p>
+                    <p>In theory, UFOs could be dangerous someday if aliens come, but no one has ever been hurt by aliens.</p>
                 </div>
             </div>
             
-            <div class="mystery-facts">
-                <h2>🌌 UFO Mystery Facts 🌌</h2>
-                <div class="facts-grid">
-                    <div class="fact-item">Sometimes saucer-shaped</div>
-                    <div class="fact-item">Many different shapes</div>
-                    <div class="fact-item">No proof of aliens yet</div>
-                    <div class="fact-item">Never seen one up close</div>
-                    <div class="fact-item">Uranus named after Roman God</div>
-                    <div class="fact-item">No confirmed alien contact</div>
-                </div>
-            </div>
+
             
             <div class="citations">
                 <h3>References (APA Style)</h3>
@@ -354,38 +344,6 @@
         </div>
     </div>
 
-    <script>
-        function goHome() {
-            alert("🏠 Returning to main page!");
-        }
-
-        // Create animated stars
-        function createStars() {
-            const starsContainer = document.querySelector('.stars');
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                starsContainer.appendChild(star);
-            }
-        }
-
-        // Add hover effects to cards
-        document.querySelectorAll('.info-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Initialize stars when page loads
-        createStars();
-    </script>
+   
 </body>
 </html>
