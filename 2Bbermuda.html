@@ -337,26 +337,7 @@
         </div>
     </div>
 
-    
 
-        // Add floating animation to decorative elements
-        function addRandomFish() {
-            const fish = document.createElement('div');
-            fish.className = 'fish';
-            fish.innerHTML = Math.random() > 0.5 ? '🐟' : '🐠';
-            fish.style.top = Math.random() * 80 + '%';
-            fish.style.animationDelay = '0s';
-            fish.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            
-            document.querySelector('.decorative-elements').appendChild(fish);
-            
-            setTimeout(() => {
-                fish.remove();
-            }, 5000);
-        }
-
-        // Add a new fish every few seconds
-        setInterval(addRandomFish, 3000);
     </script>
 </body>
 </html>
