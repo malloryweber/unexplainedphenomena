@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bermuda Triangle - Mystery of the Ocean</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .poster {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.4em;
+            opacity: 0.9;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,40 C150,80 350,0 600,40 C850,80 1050,0 1200,40 L1200,120 L0,120 Z' fill='white'/%3E%3C/svg%3E") repeat-x;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .qa-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .qa-card {
+            background: linear-gradient(135deg, #FFE5B4, #FFEFD5);
+            border-radius: 15px;
+            padding: 25px;
+            border: 3px solid #FFD700;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .qa-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .question {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2C5F72;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .question::before {
+            content: "❓";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .answer {
+            font-size: 1.1em;
+            color: #444;
+            line-height: 1.5;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4ECDC4;
+        }
+
+        .fun-facts {
+            background: linear-gradient(135deg, #E6F3FF, #CCE7FF);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 3px dashed #4682B4;
+        }
+
+        .fun-facts h2 {
+            color: #2C5F72;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .fun-facts h2::before {
+            content: "🌊 ";
+        }
+
+        .fun-facts h2::after {
+            content: " 🚢";
+        }
+
+        .fact-list {
+            font-size: 1.2em;
+            color: #444;
+            line-height: 1.8;
+        }
+
+        .citations {
+            background: #F8F9FA;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 2px solid #DEE2E6;
+        }
+
+        .citations h3 {
+            color: #495057;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .citations h3::before {
+            content: "📚 ";
+        }
+
+        .citation {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 0.9em;
+            color: #666;
+            border-left: 4px solid #6C757D;
+        }
+
+        .home-button {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #FF8E8E, #FFB4B4);
+        }
+
+        .home-button::before {
+            content: "🏠 ";
+        }
+
+        .decorative-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .boat {
+            position: absolute;
+            font-size: 2em;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .fish {
+            position: absolute;
+            font-size: 1.5em;
+            animation: swim 4s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes swim {
+            0% { transform: translateX(-50px); }
+            100% { transform: translateX(calc(100vw + 50px)); }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .qa-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .home-button {
+                top: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="home-button" a href="https://malloryweber.github.io/unexplainedphenomena/index.html#">Home</button>
+    
+    <div class="poster">
+        <div class="decorative-elements">
+            <div class="boat" style="top: 20%; right: 10%;">⛵</div>
+            <div class="fish" style="top: 60%; animation-delay: -2s;">🐟</div>
+            <div class="fish" style="top: 80%; animation-delay: -1s;">🐠</div>
+        </div>
+        
+        <div class="header">
+            <h1>The Bermuda Triangle</h1>
+            <p>Mystery of the Ocean!</p>
+            <div class="wave"></div>
+        </div>
+        
+        <div class="content">
+            <div class="qa-grid">
+                <div class="qa-card">
+                    <div class="question">Is the Bermuda Triangle actually a place?</div>
+                    <div class="answer">Yes! The Bermuda Triangle is a real place in the ocean.</div>
+                </div>
+                
+                <div class="qa-card">
+                    <div class="question">Does it look like a triangle?</div>
+                    <div class="answer">It looks like a triangle on a map, but it doesn't look like a triangle when you're there.</div>
+                </div>
+                
+                <div class="qa-card">
+                    <div class="question">Is it cold or hot?</div>
+                    <div class="answer">It's hot because it's connected to Florida and the Caribbean.</div>
+                </div>
+                
+                <div class="qa-card">
+                    <div class="question">Is it even a triangle?</div>
+                    <div class="answer">It could just be a name. Not everyone agrees on the boundaries.</div>
+                </div>
+                
+                <div class="qa-card">
+                    <div class="question">How big is it?</div>
+                    <div class="answer">About 440,000 square miles - that's really big!</div>
+                </div>
+                
+                <div class="qa-card">
+                    <div class="question">How many sides does it have?</div>
+                    <div class="answer">3 sides, but they're invisible borders in the ocean.</div>
+                </div>
+                
+                <div class="qa-card">
+                    <div class="question">Why does stuff disappear into it?</div>
+                    <div class="answer">Possibly because of storms and big waves called "rogue waves". But things don't go missing in the Bermuda Triangle more than other similar places.</div>
+                </div>
+                
+                <div class="qa-card">
+                    <div class="question">Is there even water in the Bermuda Triangle?</div>
+                    <div class="answer">Yes, it's in the ocean!</div>
+                </div>
+                
+                <div class="qa-card">
+                    <div class="question">How many boats have gone missing?</div>
+                    <div class="answer">About 50 boats have gone missing there.</div>
+                </div>
+                
+                <div class="qa-card">
+                    <div class="question">When was the Bermuda Triangle first noticed?</div>
+                    <div class="answer">It wasn't built, but people started telling stories about it around the 1850s or later.</div>
+                </div>
+                
+                <div class="qa-card">
+                    <div class="question">When boats vanish, where do they end up?</div>
+                    <div class="answer">They probably get shipwrecked or sink to the bottom of the ocean.</div>
+                </div>
+            </div>
+            
+            <div class="fun-facts">
+                <h2>Cool Ocean Facts</h2>
+                <div class="fact-list">
+                    🌊 The Bermuda Triangle is in the Atlantic Ocean<br>
+                    🏝️ It's near Florida, Bermuda, and Puerto Rico<br>
+                    ⛈️ It has lots of storms and big waves<br>
+                    🚢 Many ships travel through it safely every day<br>
+                    🔍 Scientists study it to learn more about the ocean
+                </div>
+            </div>
+            
+            <div class="citations">
+                <h3>Where We Learned This Information</h3>
+                <div class="citation">
+                    Encyclopædia Britannica. (n.d.). Bermuda Triangle. Britannica School. Retrieved May 30, 2025, from https://school.eb.com/levels/middle/article/Bermuda-Triangle/317395
+                </div>
+                <div class="citation">
+                    Smith, P.C.F. (2025). Bermuda Triangle. In World Book Student. https://www.worldbookonline.com/student-new/#/article/home/ar056730
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+        // Add floating animation to decorative elements
+        function addRandomFish() {
+            const fish = document.createElement('div');
+            fish.className = 'fish';
+            fish.innerHTML = Math.random() > 0.5 ? '🐟' : '🐠';
+            fish.style.top = Math.random() * 80 + '%';
+            fish.style.animationDelay = '0s';
+            fish.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            
+            document.querySelector('.decorative-elements').appendChild(fish);
+            
+            setTimeout(() => {
+                fish.remove();
+            }, 5000);
+        }
+
+        // Add a new fish every few seconds
+        setInterval(addRandomFish, 3000);
+    </script>
+</body>
+</html>
