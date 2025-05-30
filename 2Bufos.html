@@ -1,1 +1,391 @@
-<body></body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UFOs - by Class 2B</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .poster {
+            max-width: 950px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #4a00e0 0%, #8e2de2 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px 50px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .header .author {
+            font-size: 1.5em;
+            font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .ufo-decoration {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2.5em;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .content {
+            padding: 35px;
+        }
+
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+
+        .info-card:hover::before {
+            animation: shimmer 0.6s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        .info-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card h3::before {
+            content: "🛸";
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+
+        .info-card p {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .mystery-facts {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            color: #333;
+            text-align: center;
+        }
+
+        .mystery-facts h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #5a2c6f;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .fact-item {
+            background: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: #5a2c6f;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .citations {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            border-left: 6px solid #6f42c1;
+        }
+
+        .citations h3 {
+            color: #495057;
+            font-size: 1.4em;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .citations h3::before {
+            content: "📚 ";
+        }
+
+        .citation {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 0.9em;
+            color: #333;
+            line-height: 1.5;
+            border-left: 4px solid #007bff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .home-button {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 22px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .home-button::before {
+            content: "🏠 ";
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.3em;
+            }
+            
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .facts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .home-button {
+                top: 15px;
+                right: 15px;
+                padding: 12px 18px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <button class="home-button" onclick="goHome()">Home</button>
+    
+    <div class="poster">
+        <div class="header">
+            <div class="ufo-decoration">🛸</div>
+            <h1>UFOs</h1>
+            <div class="subtitle">Unidentified Flying Objects</div>
+            <div class="author">by the Mini Marshmallows</div>
+        </div>
+        
+        <div class="content">
+            <div class="info-section">
+                <div class="info-card">
+                    <h3>Are UFOs real?</h3>
+                    <p>Yes, because they can literally be anything unidentified flying in the air!</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>What's inside UFOs?</h3>
+                    <p>Since we don't know what UFOs are, there could be aliens, space gadgets, air, or anything else.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Where do they come from?</h3>
+                    <p>They might come from anywhere - could just be something like a balloon in the fog.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>What do people mistake for UFOs?</h3>
+                    <p>Airplanes, weather balloons, planets, stars, and birds are commonly mistaken for alien spaceships.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>How many UFO sightings per year?</h3>
+                    <p>About 200 per month, which means around 2,400 sightings every year!</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Are UFOs dangerous?</h3>
+                    <p>In theory, UFOs could be dangerous if aliens exist, but no one has ever been hurt by aliens.</p>
+                </div>
+            </div>
+            
+            <div class="mystery-facts">
+                <h2>🌌 UFO Mystery Facts 🌌</h2>
+                <div class="facts-grid">
+                    <div class="fact-item">Sometimes saucer-shaped</div>
+                    <div class="fact-item">Many different shapes</div>
+                    <div class="fact-item">No proof of aliens yet</div>
+                    <div class="fact-item">Never seen one up close</div>
+                    <div class="fact-item">Uranus named after Roman God</div>
+                    <div class="fact-item">No confirmed alien contact</div>
+                </div>
+            </div>
+            
+            <div class="citations">
+                <h3>References (APA Style)</h3>
+                <div class="citation">
+                    Davis, B. J. (2010). <em>The kid's guide to aliens</em>. Edge Books.
+                </div>
+                <div class="citation">
+                    Encyclopædia Britannica. (n.d.). Unidentified flying object (UFO). <em>Britannica School</em>. https://school.eb.com/levels/middle/article/unidentified-flying-object-UFO/353883
+                </div>
+                <div class="citation">
+                    Oberg, J. (2025). Unidentified flying object (UFO). In <em>World Book Student</em>.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goHome() {
+            alert("🏠 Returning to main page!");
+        }
+
+        // Create animated stars
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Add hover effects to cards
+        document.querySelectorAll('.info-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Initialize stars when page loads
+        createStars();
+    </script>
+</body>
+</html>
